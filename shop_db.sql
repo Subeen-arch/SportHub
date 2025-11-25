@@ -7,6 +7,23 @@ admins-- =========================================
 CREATE DATABASE IF NOT EXISTS shop_db;
 USE shop_db;
 
+CREATE TABLE categories (
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   name VARCHAR(100) NOT NULL UNIQUE
+);
+
+INSERT INTO categories (name) VALUES
+('Football'),
+('Cricket'),
+('Basketball'),
+('Fitness'),
+('Volleyball'),
+('Table Tennis');
+
+-- admin : 6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2
+
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -39,6 +56,14 @@ CREATE TABLE IF NOT EXISTS products (
   image_03 VARCHAR(100) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE products
+ADD COLUMN category VARCHAR(100) NOT NULL DEFAULT 'Uncategorized'
+AFTER name;
+
+ALTER TABLE products
+DROP COLUMN image_02,
+DROP COLUMN image_03;
 
 CREATE TABLE IF NOT EXISTS cart (
   id INT(100) NOT NULL AUTO_INCREMENT,
@@ -83,7 +108,7 @@ CREATE TABLE IF NOT EXISTS messages (
   email VARCHAR(100) NOT NULL,
   number VARCHAR(12) NOT NULL,
   message VARCHAR(500) NOT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (id)cart
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 COMMIT;
