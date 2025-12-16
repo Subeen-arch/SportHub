@@ -46,7 +46,9 @@ if(isset($_GET['delete'])){
 
 <section class="accounts">
 
+   <div class="heading-product">
    <h1 class="heading">user accounts</h1>
+   </div>
 
    <div class="box-container">
 

@@ -625,3 +625,372 @@ section{
    }
 
 }
+
+/* scrollbar */
+*::selection{
+   background-color: var(--main-color);
+   color:var(--white);
+}
+
+::-webkit-scrollbar{
+   height: .5rem;
+   width: 1rem;
+}
+
+::-webkit-scrollbar-track{
+   background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+   background-color: var(--main-color);
+}
+
+html{
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+/* --------------------------------------------
+   BODY (push right because sidebar exists)
+--------------------------------------------- */
+body{
+   background-color: var(--light-bg);
+   margin-left: 23rem;           /* ADDED FOR SIDEBAR */
+   transition: .3s ease;         /* ADDED FOR SIDEBAR */
+}
+
+/* general spacing */
+section{
+   padding:2rem;
+   max-width: 1200px;
+   margin:0 auto;
+}
+
+.heading{
+   font-size: 4rem;
+   color:var(--black);
+   margin-bottom: 2rem;
+   text-align: center;
+   text-transform: uppercase;
+}
+
+/* buttons */
+.btn,
+.delete-btn,
+.option-btn{
+   display: block;
+   width: 100%;
+   margin-top: 1rem;
+   border-radius: .5rem;
+   padding:1rem 3rem;
+   font-size: 1.7rem;
+   text-transform: capitalize;
+   color:var(--white);
+   cursor: pointer;
+   text-align: center;
+}
+
+.btn:hover,
+.delete-btn:hover,
+.option-btn:hover{
+   background-color: var(--black);
+}
+
+.btn{ background-color: var(--main-color); }
+.option-btn{ background-color: var(--orange); }
+.delete-btn{ background-color: var(--red); }
+
+.flex-btn{ display: flex; gap:1rem; }
+
+/* --------------------------------------------
+   MESSAGES
+--------------------------------------------- */
+.message{
+   position: sticky;
+   top:0;
+   max-width: 1200px;
+   margin:0 auto;
+   background-color: var(--light-bg);
+   padding:2rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap:1.5rem;
+   z-index: 1100;
+}
+
+.message span{
+   font-size: 2rem;
+   color:var(--black);
+}
+
+.message i{
+   cursor: pointer;
+   color:var(--red);
+   font-size: 2.5rem;
+}
+
+.message i:hover{ color:var(--black); }
+
+/* fallback */
+.empty{
+   padding:1.5rem;
+   background-color: var(--white);
+   border: var(--border);
+   box-shadow: var(--box-shadow);
+   text-align: center;
+   color:var(--red);
+   border-radius: .5rem;
+   font-size: 2rem;
+   text-transform: capitalize;
+}
+
+@keyframes fadeIn{
+   0%{ transform: translateY(1rem); }
+}
+
+/* --------------------------------------------
+   LOGIN / GENERAL FORMS
+--------------------------------------------- */
+.form-container{
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.form-container form{
+   padding:2rem;
+   text-align: center;
+   box-shadow: var(--box-shadow);
+   background-color: var(--white);
+   border-radius: .5rem;
+   width: 50rem;
+   border:var(--border);
+}
+
+.form-container form h3{
+   text-transform: uppercase;
+   color:var(--black);
+   margin-bottom: 1rem;
+   font-size: 2.5rem;
+}
+
+.form-container form p{
+   font-size: 1.8rem;
+   color:var(--light-color);
+   margin-bottom: 1rem;
+}
+
+.form-container form .box{
+   width: 100%;
+   margin:1rem 0;
+   border-radius: .5rem;
+   background-color: var(--light-bg);
+   padding:1.4rem;
+   font-size: 1.8rem;
+   color:var(--black);
+}
+
+/* ---------------------------------------------------------------
+   SIDEBAR (NEW)
+-----------------------------------------------------------------*/
+.sidebar{
+   position: fixed;
+   top:0;
+   left:0;
+   width:23rem;
+   height:100%;
+   background:var(--white);
+   border-right:var(--border);
+   box-shadow:var(--box-shadow);
+   padding:2rem;
+   z-index:1500;
+}
+
+.sidebar-title{
+   font-size:2.5rem;
+   margin-bottom:2rem;
+   color:var(--black);
+}
+
+.sidebar-title span{
+   color:var(--main-color);
+}
+
+.sidebar-links{
+   list-style:none;
+}
+
+.sidebar-links li{
+   margin-bottom:1rem;
+}
+
+.sidebar-links a{
+   display:block;
+   padding:1.2rem 1rem;
+   font-size:1.8rem;
+   color:var(--black);
+   border-radius:.5rem;
+   transition:.2s;
+}
+
+.sidebar-links a i{
+   margin-right:.8rem;
+}
+
+.sidebar-links a:hover{
+   background:var(--main-color);
+   color:var(--white);
+}
+
+.sidebar.active{
+   left:-23rem;
+}
+
+/* ---------------------------------------------------------------
+   TOP HEADER (MODIFIED)
+-----------------------------------------------------------------*/
+.header{
+   position:fixed;                /* changed from sticky */
+   top:0;
+   left:23rem;                   /* ADDED */
+   right:0;
+   width:calc(100% - 23rem);     /* ADDED */
+   background-color: var(--white);
+   box-shadow: var(--box-shadow);
+   z-index: 1400;
+   transition:.3s ease;
+}
+
+.header .flex{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   position: relative;
+}
+
+.left-section{
+   display:flex;
+   align-items:center;
+   gap:2rem;
+}
+
+#menu-btn{
+   font-size:2.8rem;
+   cursor:pointer;
+   color:var(--black);
+   display:none; /* shown only on mobile */
+}
+
+.page-title{
+   font-size:2.2rem;
+   color:var(--black);
+   text-transform:capitalize;
+}
+
+/* profile dropdown */
+.header .flex .profile{
+   position: absolute;
+   top:120%; right:0;
+   background-color: var(--white);
+   border-radius: .5rem;
+   box-shadow: var(--box-shadow);
+   border:var(--border);
+   padding:2rem;
+   width: 30rem;
+   display:none;
+}
+
+.header .flex .profile.active{
+   display:block;
+}
+
+.header .flex .profile p{
+   text-align: center;
+   color:var(--black);
+   font-size: 2rem;
+   margin-bottom: 1rem;
+}
+
+.profile-icon{
+   font-size:2.5rem;
+   cursor:pointer;
+   color:var(--black);
+}
+
+/* ------------------------------------------------------------------
+   DASHBOARD BOXES (unchanged)
+--------------------------------------------------------------------*/
+.dashboard .box-container{
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+   gap:1.5rem;
+   justify-content: center;
+   align-items: flex-start;
+}
+
+.dashboard .box{
+   padding:2rem;
+   text-align: center;
+   border:var(--border);
+   box-shadow: var(--box-shadow);
+   border-radius: .5rem;
+   background-color: var(--white);
+}
+
+/* ---------------------------------------------------------------
+   RESPONSIVE
+----------------------------------------------------------------*/
+@media (max-width:768px){
+
+   body{
+      margin-left:0;
+   }
+
+   .sidebar{
+      left:-23rem;
+   }
+   .sidebar.active{
+      left:0;
+   }
+
+   .header{
+      left:0;
+      width:100%;
+   }
+
+   #menu-btn{
+      display:inline-block;
+   }
+}
+
+@media (max-width:450px){
+
+   html{ font-size: 50%; }
+
+   .heading{ font-size: 3.5rem; }
+
+   .flex-btn{
+      flex-flow: column;
+      gap:0;
+   }
+}
+
+.heading-product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10rem;
+}
+
+.btn-product {
+    background-color: var(--main-color);
+    color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.7rem;
+    text-transform: capitalize;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}

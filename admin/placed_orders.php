@@ -46,8 +46,9 @@ if(isset($_GET['delete'])){
 <?php include '../components/admin_header.php'; ?>
 
 <section class="orders">
-
+<div class="heading-product"> 
 <h1 class="heading">placed orders</h1>
+</div>
 
 <div class="box-container">
 

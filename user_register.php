@@ -101,65 +101,68 @@ if (isset($_POST['submit'])) {
    </section>
 
    <script src="js/script.js"></script>
+<script>
+   const form = document.querySelector("form");
 
-   <script>
-      const form = document.querySelector("form");
+   // inputs
+   const emailInput = document.querySelector("input[name='email']");
+   const pass = document.getElementById("pass");
+   const cpass = document.getElementById("cpass");
+   const errorMsg = document.getElementById("pass-error");
+   const phone = document.getElementById("phone");
+   const country = document.getElementById("country");
+   const phoneError = document.getElementById("phone-error");
 
-      // password fields
-      const pass = document.getElementById("pass");
-      const cpass = document.getElementById("cpass");
-      const errorMsg = document.getElementById("pass-error");
+   form.addEventListener("submit", (e) => {
 
-      // phone fields
-      const phone = document.getElementById("phone");
-      const country = document.getElementById("country");
-      const phoneError = document.getElementById("phone-error");
+      /* --------------------- EMAIL VALIDATION --------------------- */
+      const emailVal = emailInput.value.trim();
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
 
-      form.addEventListener("submit", (e) => {
-         const emailVal = email.value;
-         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+         e.preventDefault();
+         alert("Please enter a valid email like: example@gmail.com");
+         return;
+      }
 
-         if (!emailRegex.test(emailVal)) {
-            e.preventDefault();
-            alert("Please enter a valid email like: example@gmail.com");
-            return;
-         }
-         // PHONE VALIDATION
-         const num = phone.value.trim();
-         const code = country.value;
+      /* --------------------- PHONE VALIDATION --------------------- */
+      const num = phone.value.trim();
+      const code = country.value;
 
-         if (code === "977" && num.length !== 10) {
-            e.preventDefault();
-            phoneError.textContent = "For Nepal (+977), phone number must be 10 digits!";
-            return;
-         }
-
-         if (code === "91" && num.length !== 10) {
-            e.preventDefault();
-            phoneError.textContent = "For India (+91), phone number must be 10 digits!";
-            return;
-         }
-
+      if (num.length !== 10) {
+         e.preventDefault();
+         phoneError.textContent = "Phone number must be exactly 10 digits!";
+         return;
+      } else {
          phoneError.textContent = "";
+      }
 
-         // PASSWORD VALIDATION
-         const password = pass.value;
-         const confirm = cpass.value;
+      /* --------------------- PASSWORD VALIDATION --------------------- */
+      const password = pass.value;
+      const confirm = cpass.value;
 
-         if (password.length < 8) {
-            e.preventDefault();
-            errorMsg.textContent = "Password must be at least 8 characters long!";
-         } else if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password)) {
-            e.preventDefault();
-            errorMsg.textContent = "Password must include at least one special character!";
-         } else if (password !== confirm) {
-            e.preventDefault();
-            errorMsg.textContent = "Passwords do not match!";
-         } else {
-            errorMsg.textContent = "";
-         }
-      });
-   </script>
+      if (password.length < 8) {
+         e.preventDefault();
+         errorMsg.textContent = "Password must be at least 8 characters!";
+         return;
+      }
+
+      if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+         e.preventDefault();
+         errorMsg.textContent = "Password must include at least one special character!";
+         return;
+      }
+
+      if (password !== confirm) {
+         e.preventDefault();
+         errorMsg.textContent = "Passwords do not match!";
+         return;
+      }
+
+      errorMsg.textContent = "";
+   });
+</script>
+
 
 </body>
 
